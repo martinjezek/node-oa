@@ -5,10 +5,12 @@ var express = require('express'),
 
 module.exports = function(app) {
 
-    // Port
+    // Port & Config Name
     app.set('port', config.get('http.port'));
-
-    // Config Name
     app.set('config', config.get('name'));
+
+    // Template Engine
+    app.set('views', './views');
+    app.set('view engine', 'jade');
 
 };
