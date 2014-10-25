@@ -4,8 +4,9 @@ block title
     title Login
 
 block content
-    form.form-signin(action='index', method='POST')
+    form.form-signin(action='/login', method='POST')
         h1 Please sign in
-        input.form-control(type='text', placeholder='Email address')
-        input.form-control.last(type='password', placeholder='Password')
+        input.form-control(type='text', name='email', placeholder='Email address')
+        input.form-control.last(type='password', name='password', placeholder='Password')
         input.btn.btn-lg.btn-primary.btn-block(type='submit', value='Sign in')
+        include ./partials/flash-messages.jade

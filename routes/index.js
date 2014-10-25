@@ -4,7 +4,11 @@ var express = require('express');
 
 module.exports = express.Router()
     .get('/', function(req, res) {
-        res.render('login');
+        if (req.user) {
+            res.render('index', { user: req.user });
+        } else {
+            res.render('login');
+        }
     })
 
     .get('/index', function(req, res) {

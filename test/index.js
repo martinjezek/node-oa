@@ -10,7 +10,6 @@ describe('index', function() {
         request(app).get('/')
             .end(function(err, res) {
                 res.status.should.equal(200);
-                res.text.should.equal('Hello world!');
                 done();
             });
     });
