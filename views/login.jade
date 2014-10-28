@@ -1,12 +1,15 @@
 extends ./layout.jade
 
 block title
-    title Login
+    title Log in
 
 block content
     form.form-signin(action='/login', method='POST')
-        h1 Please sign in
+        h1 My App
         input.form-control(type='text', name='email', placeholder='Email address')
         input.form-control.last(type='password', name='password', placeholder='Password')
-        input.btn.btn-lg.btn-primary.btn-block(type='submit', value='Sign in')
+        div.actions.clearfix
+            input.btn.btn-primary(type='submit', value='Log in')
+            p.signup= 'Or '
+                a(href='/signup') Sign up for My App
         include ./partials/flash-messages.jade
