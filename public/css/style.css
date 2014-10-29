@@ -60,3 +60,12 @@
     font-size: 11px;
 }
 
+.page-header {
+    position: relative;
+}
+
+.page-header a.logout {
+    position: absolute;
+    top: 5px;
+    right: 0px;
+}

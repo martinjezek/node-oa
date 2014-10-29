@@ -26,4 +26,10 @@ module.exports = express.Router()
         successRedirect: '/',
         failureRedirect: '/login',
         failureFlash: true
-    }));
+    }))
+
+    .get('/logout', function(req, res) {
+        req.session.destroy(function(err) {
+            res.redirect('/');
+        });
+    });
