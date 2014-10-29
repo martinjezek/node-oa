@@ -2,7 +2,8 @@
 
 var express         = require('express'),
     passport        = require('passport'),
-    LocalStrategy   = require('passport-local').Strategy;
+    LocalStrategy   = require('passport-local').Strategy,
+    User            = require('../lib/model/user').model;
 
 module.exports = function(app) {
 
@@ -23,17 +24,14 @@ module.exports = function(app) {
             usernameField: 'email',
             passwordField: 'password'
         }, function(email, password, done) {
-            if (email === 'asd' && password === '123') {
-                return done(null, { id: 1, name: 'Martin' });
-            } else {
-                return done(null, false, { message: 'Incorrect credentials' });
-            }
-            // User.findOne({ username: username }, function(err, user) {
-            //     if (err) return done(err);
-            //         if (!user) return done(null, false, { message: 'Incorrect username.' });
-            //         if (!user.validPassword(password)) return done(null, false, { message: 'Incorrect password.' });
-            //         return done(null, user);
-            //     });
+            User
+                .findOne({ email: email })
+                .exec(function(err, user) {
+                    if (err) return done(err);
+                    if (!user) return done(null, false, { message: 'Incorrect email' });
+                    if (!user.validPassword(password)) return done(null, false, { message: 'Incorrect password' });
+                    return done(null, user);
+                });
         }
     ));
 
