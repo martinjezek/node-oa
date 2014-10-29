@@ -9,6 +9,7 @@ module.exports = function(app) {
     app.use(express.static(path.join(process.cwd(), '/public')));
 
     // App routes
-    app.use('/'     , require('../routes/index'));
+    app.use('/', require('../routes/index'));
+    app.use('/', require('../routes/authorization'));
 
 };

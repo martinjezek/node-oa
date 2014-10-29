@@ -10,7 +10,8 @@ module.exports = function(grunt) {
             },
             src: [
                 '**/*.js',
-                '!node_modules/**/*.js'
+                '!node_modules/**/*.js',
+                '!public/bower_components/**/*.js'
             ]
         },
         mochaTest: {

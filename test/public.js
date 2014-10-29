@@ -7,10 +7,10 @@ var app         = require('../app'),
 describe('public', function() {
 
     it('should get a public file', function(done) {
-        request(app).get('/image.gif')
+        request(app).get('/css/style.css')
             .end(function(err, res) {
                 res.status.should.equal(200);
-                res.type.should.equal('image/gif');
+                res.type.should.equal('text/css');
                 done();
             });
     });

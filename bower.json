@@ -1,0 +1,18 @@
+{
+  "name": "node-oa",
+  "version": "0.0.0",
+  "homepage": "https://github.com/martinjezek/node-oa",
+  "authors": [
+    "Martin Jezek <info@martin-jezek.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "*.*",
+    "**/*.*"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "bootstrap": "~3.2.0"
+  }
+}

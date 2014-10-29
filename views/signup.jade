@@ -1,0 +1,32 @@
+extends ./layout.jade
+
+block title
+    title Sign up
+
+block content
+    div.page-header
+        h1 Sign up
+
+    div.well
+        p Join over million of people using My App to get better life.
+
+    form.form-signup.form-horizontal(action='/signup', method='POST')
+        div.form-group
+            div.col-sm-6
+                label(for='email') Email
+                input.form-control(type='text', name='email', placeholder='Email')
+            div.col-sm-6
+                label(for='password') Password
+                input.form-control(type='password', name='password', placeholder='Password')
+        div.form-group
+            div.col-sm-6
+                label(for='firstname') First Name
+                input.form-control(type='text', name='firstname', placeholder='First Name')
+            div.col-sm-6
+                label(for='lastname') Last Name
+                input.form-control(type='text', name='lastname', placeholder='Last Name')
+        div.form-group
+            div.col-sm-12.text-center
+                input.btn.btn-lg.btn-primary(type='submit', value='Sign up')
+                p.terms By clicking #[strong Sign up] you confirm that you accept our #[strong Privacy Policy] and #[strong Terms of Service].
+        include ./partials/flash-messages.jade
