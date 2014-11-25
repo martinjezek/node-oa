@@ -32,4 +32,13 @@ module.exports = express.Router()
         req.session.destroy(function(err) {
             res.redirect('/');
         });
-    });
+    })
+
+    // twitter
+
+    .get('/auth/twitter', passport.authenticate('twitter'))
+
+    .get('/auth/twitter/callback', passport.authenticate('twitter', {
+        successRedirect: '/',
+        failureRedirect: '/login'
+    }));

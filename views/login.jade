@@ -12,4 +12,11 @@ block content
             input.btn.btn-primary(type='submit', value='Log in')
             p.signup= 'Or '
                 a(href='/signup') Sign up for My App
+        p.social
+            span.or
+                span.border
+                span.text Or
+            a.btn.btn-block.btn-social.btn-twitter(href='/auth/twitter')
+                span.glyphicon-class.fa.fa-twitter
+                = 'Login in with Twitter'
         include ./partials/flash-messages.jade

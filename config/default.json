@@ -30,5 +30,13 @@
             "port": 27017,
             "name": "node-oa"
         }
+    },
+
+    // OAuth
+    "oauth": {
+        "twitter": {
+            "consumerKey": "bE3r6lFlzByBNoDooQQrKhDkg",
+            "consumerSecret": "Y7q7nx2JypKTeEBQNSAlatjIGmgyxEpLu6RdRKK2XbA5FOkQvz"
+        }
     }
 }

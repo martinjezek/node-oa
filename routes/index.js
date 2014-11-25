@@ -3,14 +3,14 @@
 var express = require('express');
 
 module.exports = express.Router()
-    .get('/', function(req, res) {
-        if (req.user) {
-            res.render('index', { user: req.user });
-        } else {
-            res.render('login');
-        }
-    })
-
-    .get('/index', function(req, res) {
-        res.render('index', { user: { name: 'Martin' }});
+    .get('/', ensureAuthenticated, function(req, res) {
+        res.render('index', { user: req.user });
     });
+
+function ensureAuthenticated(req, res, next) {
+    if (req.user) {
+        return next();
+    } else {
+        res.redirect('/login');
+    }
+}
