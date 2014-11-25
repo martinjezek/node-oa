@@ -4,7 +4,7 @@
 
 .form-signin {
     max-width: 330px;
-    padding: 25% 15px 15px 15px;
+    padding: 20% 15px 15px 15px;
     margin: 0 auto;
 }
 
@@ -15,6 +15,34 @@
 .form-signin h1,
 .form-signin .form-control.last {
     margin-bottom: 15px;
+}
+
+.form-signin .social {
+    margin-bottom: 20px;
+}
+
+.form-signin .social span.or,
+.form-signin .social span.or span {
+    display: block;
+    position: relative;
+}
+
+.form-signin .social span.or {
+    padding: 35px 0px;
+}
+
+.form-signin .social span.or span.border {
+    border-top: 1px solid #eaeaea;
+}
+
+.form-signin .social span.or span.text {
+    display: inline;
+    position: absolute;
+    top: 25px;
+    left: 127px;
+    padding: 0px 15px;
+    background: #fff;
+    color: #b2b2b2;
 }
 
 .form-signin .form-control {
@@ -39,7 +67,6 @@
 
 .form-signin .actions {
     position: relative;
-    margin-bottom: 20px;
 }
 
 .form-signin p.signup {
@@ -58,6 +85,10 @@
 
 .form-signup .terms {
     font-size: 11px;
+}
+
+.form-signup .social {
+    padding-top: 15px;
 }
 
 .page-header {
