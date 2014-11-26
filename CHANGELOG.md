@@ -1,3 +1,13 @@
+<a name="0.0.2"></a>
+### 0.0.2 (2014-11-26)
+
+
+#### Features
+
+* refactoring a local strategy according to a new standart from the twitter one #6 ([5060ff48](git@github.com:martinjezek/node-oa/commit/5060ff481218a7560cbd0beec8c081a6ab3f44c3))
+* add Twitter OAuth service #1 ([3e35f34d](git@github.com:martinjezek/node-oa/commit/3e35f34d0e1b8168aa6f1e435e312ba42d54f498))
+
+
 <a name="0.0.1"></a>
 ### 0.0.1 (2014-10-29)
 
