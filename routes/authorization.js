@@ -2,7 +2,7 @@
 
 var express     = require('express'),
     passport    = require('passport'),
-    user        = require('../lib/model/user');
+    credentials = require('../lib/model/credentials');
 
 module.exports = express.Router()
 
@@ -10,16 +10,24 @@ module.exports = express.Router()
         res.render('signup');
     })
 
-    .post('/signup', function(req, res) {
-        user.create(req, res, {
-            successRedirect: '/',
-            failureRedirect: '/signup',
-            failureFlash: true
+    .get('/login', function(req, res) {
+        res.render('login');
+    })
+
+    .get('/logout', function(req, res) {
+        req.session.destroy(function(err) {
+            res.redirect('/');
         });
     })
 
-    .get('/login', function(req, res) {
-        res.render('login');
+    // email
+
+    .post('/signup', function(req, res) {
+        credentials.signup(req, res, {
+            successRedirect: '/login',
+            failureRedirect: '/signup',
+            failureFlash: true
+        });
     })
 
     .post('/login', passport.authenticate('local', {
@@ -27,12 +35,6 @@ module.exports = express.Router()
         failureRedirect: '/login',
         failureFlash: true
     }))
-
-    .get('/logout', function(req, res) {
-        req.session.destroy(function(err) {
-            res.redirect('/');
-        });
-    })
 
     // twitter
 

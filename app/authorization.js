@@ -30,14 +30,17 @@ module.exports = function(app) {
             usernameField: 'email',
             passwordField: 'password'
         }, function(email, password, done) {
-            // User
-            //     .findOne({ email: email })
-            //     .exec(function(err, user) {
-            //         if (err) return done(err);
-            //         if (!user) return done(null, false, { message: 'Incorrect email' });
-            //         if (!user.validPassword(password)) return done(null, false, { message: 'Incorrect password' });
-            //         return done(null, user);
-            //     });
+            // find credentials
+            var searchBy = {
+                service : 'email',
+                token   : email,
+                secret  : password
+            };
+            credentials.find(searchBy, function(err, credentialsRecord) {
+                if (err) return done(err);
+                if (!credentialsRecord) return done(null, false, { message: 'Incorrect credentials' });
+                return done(null, credentialsRecord.userId);
+            });
         }
     ));
 
@@ -48,17 +51,22 @@ module.exports = function(app) {
             callbackURL: '/auth/twitter/callback'
         },
         function(token, secret, profile, done) {
-            // find user
-            credentials.find('twitter', profile.id, function(err, record) {
+            // find credentials
+            var searchBy = {
+                service     : 'twitter',
+                serviceId   : profile.id
+            };
+            credentials.find(searchBy, function(err, record) {
                 if (err) return done(err);
                 if (!record) {
+                    // create user
                     var split = profile.displayName.split(' '),
                         userData = {};
                         userData.firstname = split[0] ? split[0] : '';
                         userData.lastname  = split[1] ? split[1] : '';
-                    // create user
                     user.create(userData, function(err, userRecord) {
                         if (err) return done(err);
+                        // create credentials
                         var credentialsData = {
                             userId      : userRecord._id,
                             service     : 'twitter',
@@ -68,20 +76,19 @@ module.exports = function(app) {
                             secret      : secret,
                             raw         : profile._raw
                         };
-                        // create credentials
                         credentials.create(credentialsData, function(err, credentialsRecord) {
                             if (err) return done(err);
                             return done(null, credentialsRecord.userId);
                         });
                     });
                 } else {
+                    // update credentials
                     var credentialsData = {
                         username    : profile.username,
                         token       : token,
                         secret      : secret,
                         raw         : profile._raw
                     };
-                    // update credentials
                     credentials.update(record._id, credentialsData, function(err, credentialsRecord) {
                         if (err) return done(err);
                         return done(null, credentialsRecord.userId);
